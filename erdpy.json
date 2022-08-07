@@ -1,0 +1,25 @@
+{
+    "configurations": {
+        "default": {
+            "proxy": "https://devnet-api.elrond.com",
+            "chainID": "D"
+        }
+    },
+    "contract":{
+        "deploy":{
+            "verbose": true,
+            "bytecode": "output/marketplace.wasm",
+            "recall-nonce": true,
+            "pem": "../wallet.pem",
+            "gas-limit": 60000000,
+            "arguments": [
+                "1",
+                "erd1...."
+            ],
+            "send": true,
+            "outfile": "marketplace.json"
+        }
+     }
+}
+
+

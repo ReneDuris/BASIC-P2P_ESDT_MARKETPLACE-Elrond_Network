@@ -1,0 +1,234 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.64.0-nightly",
+            "commitHash": "263edd43c5255084292329423c61a9d69715ebfa",
+            "commitDate": "2022-07-17",
+            "channel": "Nightly",
+            "short": "rustc 1.64.0-nightly (263edd43c 2022-07-17)"
+        },
+        "contractCrate": {
+            "name": "marketplace",
+            "version": "1.0.0"
+        },
+        "framework": {
+            "name": "elrond-wasm",
+            "version": "0.34.1"
+        }
+    },
+    "name": "Marketplace",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "royalities",
+                "type": "u32"
+            },
+            {
+                "name": "royalities_address",
+                "type": "Address"
+            }
+        ],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "whitelistToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "token",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "removeWhitelistToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "token",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "enableOffers",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "disableOffers",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "changeRoyalities",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "royalities",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "createOffer",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "accept_token_id",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "accept_amount",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
+            "name": "cancelOffer",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "offer_id",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "acceptOffer",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "offer_id",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getRoyalitiesAddress",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Address"
+                }
+            ]
+        },
+        {
+            "name": "getRoyalities",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getOffers",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "offer_id",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Offer"
+                }
+            ]
+        },
+        {
+            "name": "getOffersUser",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "offer_id",
+                    "type": "bytes"
+                },
+                {
+                    "name": "user",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Offer"
+                }
+            ]
+        },
+        {
+            "name": "getESDTwhitelist",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<EgldOrEsdtTokenIdentifier>",
+                    "multi_result": true
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "hasCallback": false,
+    "types": {
+        "Offer": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "offer_id",
+                    "type": "bytes"
+                },
+                {
+                    "name": "offer_creator",
+                    "type": "Address"
+                },
+                {
+                    "name": "offer_token_id",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "offer_amount",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "accept_token_id",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "accept_amount",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "creation_timestamp",
+                    "type": "u64"
+                }
+            ]
+        }
+    }
+}
